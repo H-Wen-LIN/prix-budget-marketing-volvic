@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Page « Le marché » du projet Volvic Soutien Collagène : délimitation du marché, 3 cercles de concurrents sourcés et carte prix / qualité interactive.">
+<title>Le marché · Volvic Soutien Collagène</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout : une page de dossier en colonnes étroites. Délimitation du marché → notre gamme → 3 cercles (onglets) → carte interactive → sources.
+   Palette « source volcanique » : papier minéral, encre basalte, bleu Volvic, vert végétal, ambre animal. */
+:root{
+  --bg:#f4f5f2; --surface:#ffffff; --paper:#ecebe7; --fg:#18202a; --ink:#1b1b1b; --muted:#5d6872; --line:#d9ddd8; --soft:#eef1ee;
+  --volvic:#1d5fa8; --volvic-soft:#e3edf8; --vegan:#2f8f5b; --animal:#c7772a; --unknown:#7d6aa8; --none:#8a979e;
+  --ok:#2f7d4f; --warn:#a36a12;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10161b; --surface:#172028; --paper:#1c2427; --fg:#e7edf1; --ink:#e6ecee; --muted:#9eacb6; --line:#2a3640; --soft:#1b262e;
+  --volvic:#74b4f2; --volvic-soft:#18304a; --vegan:#5cc48a; --animal:#e59a52; --unknown:#a996d6; --none:#8fa0a8; --ok:#6fcf97; --warn:#e3b05a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10161b; --surface:#172028; --paper:#1c2427; --fg:#e7edf1; --ink:#e6ecee; --muted:#9eacb6; --line:#2a3640; --soft:#1b262e;
+  --volvic:#74b4f2; --volvic-soft:#18304a; --vegan:#5cc48a; --animal:#e59a52; --unknown:#a996d6; --none:#8fa0a8; --ok:#6fcf97; --warn:#e3b05a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55}
+a{color:var(--volvic)}
+:focus-visible{outline:2px solid var(--volvic);outline-offset:2px}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:20px}
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:20px;padding-block:10px;overflow-x:auto;white-space:nowrap}
+nav.top .brand{font-family:var(--f-display);font-weight:800;color:var(--volvic);font-size:1rem}
+nav.top a{color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500}
+nav.top a:hover{color:var(--fg)}
+section{padding-block:56px 8px;scroll-margin-top:56px}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--volvic);margin:0 0 10px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;line-height:1;letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,3.2vw,2.2rem);font-weight:700;line-height:1.1}
+h3{font-size:1.15rem;font-weight:700}
+.lead{font-size:clamp(1.15rem,2.2vw,1.45rem);line-height:1.45;max-width:46ch;margin:18px 0 0;font-weight:500}
+.lead b{color:var(--volvic)}
+.prose{max-width:68ch;color:var(--fg)}
+.prose p{margin:12px 0 0}
+.muted{color:var(--muted)}
+.ref{font-family:var(--f-mono);font-size:.68em;font-weight:600;vertical-align:super;line-height:0;text-decoration:none;padding:0 2px;border-radius:3px;color:var(--volvic);background:var(--volvic-soft);margin-left:1px}
+.ref:hover{text-decoration:underline}
+.ref.w{color:var(--warn);background:color-mix(in srgb,var(--warn) 14%,transparent)}
+.hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end;padding-top:48px}
+@media (max-width:860px){.hero{grid-template-columns:minmax(0,1fr)}}
+.figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.fig{background:var(--surface);padding:16px 18px}
+.fig .n{font-family:var(--f-display);font-weight:800;font-size:2rem;line-height:1;color:var(--volvic);font-variant-numeric:tabular-nums}
+.fig .t{font-size:.86rem;color:var(--muted);margin-top:6px;line-height:1.35}
+.bounds{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:28px}
+@media (max-width:860px){.bounds{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bound{border-top:2px solid var(--fg);padding-top:10px}
+.bound .k{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.bound .v{font-weight:600;margin-top:4px;line-height:1.35}
+/* notre gamme */
+.own{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;margin-top:22px}
+@media (max-width:860px){.own{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+.card.blue{border-color:var(--volvic);box-shadow:inset 0 0 0 1px var(--volvic)}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:14px 0 0}
+.spec dt{color:var(--muted);font-size:.88rem}
+.spec dd{margin:0;font-weight:600}
+.rows{display:grid;gap:14px;margin-top:6px}
+.row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;padding-top:12px;border-top:1px solid var(--line)}
+.row:first-child{border-top:0;padding-top:0}
+@media (max-width:560px){.row{grid-template-columns:minmax(0,1fr);gap:2px}}
+.row .k{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.row .v{font-size:.95rem}
+/* cercles */
+.circles-head{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;align-items:center;margin-top:24px}
+@media (max-width:700px){.circles-head{grid-template-columns:minmax(0,1fr)}.rings{max-width:180px}}
+.rings{width:100%;height:auto;display:block}
+.rings circle{cursor:pointer;transition:opacity .15s}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tab{all:unset;cursor:pointer;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-weight:600;font-size:.95rem;display:flex;gap:8px;align-items:center}
+.tab .c{font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+.tab[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.tab[aria-selected="true"] .c{color:var(--bg);opacity:.75}
+.tab:focus-visible{outline:2px solid var(--volvic);outline-offset:2px}
+.ring-def{margin-top:12px;max-width:62ch;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+@media (max-width:860px){.cards{grid-template-columns:minmax(0,1fr)}}
+.ccard h3{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ccard .who{color:var(--muted);font-size:.86rem;margin:2px 0 12px}
+.dotk{width:12px;height:12px;border-radius:50%;flex:none;display:inline-block}
+.linkbtn{all:unset;cursor:pointer;font-size:.85rem;font-weight:600;color:var(--volvic);margin-top:14px;display:inline-flex;gap:6px;align-items:center}
+.linkbtn:hover{text-decoration:underline}
+.linkbtn:focus-visible{outline:2px solid var(--volvic);outline-offset:2px}
+/* carte */
+.map-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start;margin-top:22px}
+@media (max-width:960px){.map-grid{grid-template-columns:minmax(0,1fr)}}
+.map-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px;position:relative;min-width:0}
+.chart-box{overflow-x:auto;position:relative}
+.chart-inner{position:relative;min-width:560px}
+svg#map{display:block;width:100%;height:auto}
+svg#map text{font-family:var(--f-body);fill:var(--fg)}
+.axis-t{font-family:var(--f-mono);font-size:11px;fill:var(--muted)!important}
+.ax-big{font-family:var(--f-display)!important;font-weight:700;font-size:21px;fill:var(--ink)!important}
+.quad-l{font-family:var(--f-mono)!important;font-size:10.5px;letter-spacing:.06em;fill:var(--muted)!important;text-transform:uppercase}
+.pt{cursor:pointer;outline:none}
+.pt .lbl{font-weight:600;font-size:13px;paint-order:stroke;stroke:var(--paper);stroke-width:4px;stroke-linejoin:round}
+.pt.vol .lbl{font-weight:800;font-size:14px;fill:var(--volvic)!important}
+.pt:hover .dot{filter:brightness(1.08)}
+.pt:focus-visible .ring{stroke:var(--ink);stroke-width:2;stroke-dasharray:3 3}
+.pt.sel .ring{stroke:var(--ink);stroke-width:2.5;stroke-dasharray:4 3}
+.pop{position:absolute;z-index:5;width:250px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:14px}
+.pop .pn{font-family:var(--f-display);font-weight:700;font-size:1.05rem;line-height:1.15}
+.pop .pm{font-family:var(--f-mono);font-size:.76rem;color:var(--muted);margin:4px 0 10px}
+.pop .pb{display:grid;gap:8px}
+.btn{all:unset;cursor:pointer;text-align:center;padding:9px 12px;border-radius:8px;font-weight:600;font-size:.9rem;border:1px solid var(--line);background:var(--soft)}
+.btn.primary{background:var(--volvic);color:#fff;border-color:var(--volvic)}
+:root[data-theme="dark"] .btn.primary{color:#0b1a2a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.primary{color:#0b1a2a}}
+.btn:focus-visible{outline:2px solid var(--volvic);outline-offset:2px}
+.pop .x{all:unset;cursor:pointer;position:absolute;top:8px;right:10px;color:var(--muted);font-size:1.1rem;line-height:1}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:10px 4px 2px;font-size:.84rem}
+.legend span{display:flex;align-items:center;gap:7px}
+.sw{width:14px;height:14px;border-radius:50%;display:inline-block;flex:none;position:relative}
+.sw.dash{background:transparent!important;border:2px dashed var(--muted)}
+.sw.slash::after{content:"";position:absolute;left:1px;right:1px;top:6px;height:2px;background:var(--ink);transform:rotate(45deg)}
+.sw.bar::after{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:var(--ink)}
+#panel h3{font-size:1.3rem}
+#panel .who{color:var(--muted);font-size:.86rem;margin-top:2px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--soft);padding:4px;border-radius:10px;margin:14px 0}
+.seg button{all:unset;cursor:pointer;text-align:center;padding:8px;border-radius:7px;font-weight:600;font-size:.88rem;color:var(--muted)}
+.seg button[aria-selected="true"]{background:var(--surface);color:var(--fg);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.seg button:focus-visible{outline:2px solid var(--volvic)}
+.src{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.src li{font-size:.9rem;line-height:1.35}
+.src a{font-weight:600;word-break:break-word}
+.st{display:inline-block;font-family:var(--f-mono);font-size:.68rem;padding:1px 7px;border-radius:99px;margin-top:4px}
+.st.ok{color:var(--ok);border:1px solid currentColor}
+.st.w{color:var(--warn);border:1px solid currentColor}
+.score{display:grid;gap:10px}
+.score .crit{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:baseline}
+.score .cn{font-weight:600;font-size:.9rem}
+.score .pts{font-family:var(--f-mono);font-weight:600}
+.score .why{grid-column:1/-1;color:var(--muted);font-size:.85rem}
+.bar{grid-column:1/-1;height:6px;border-radius:3px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--volvic)}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding-top:10px;margin-top:4px}
+.total b{font-family:var(--f-display);font-size:1.8rem}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.88rem;margin-top:10px}
+.kv dt{color:var(--muted)} .kv dd{margin:0;font-family:var(--f-mono);font-size:.82rem;font-variant-numeric:tabular-nums}
+details.grid{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px 18px}
+details.grid summary{cursor:pointer;font-weight:700;padding:14px 0;font-family:var(--f-display);font-size:1.1rem}
+.table-box{overflow-x:auto;padding-bottom:12px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:.88rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.n{font-family:var(--f-mono);text-align:center;font-variant-numeric:tabular-nums}
+tr.mine td{background:var(--volvic-soft)}
+.notes{display:grid;gap:8px;margin-top:18px;font-size:.88rem;color:var(--muted);max-width:90ch}
+.notes b{color:var(--fg)}
+.sources{columns:2 340px;column-gap:32px;margin-top:20px;padding-left:1.6em;font-size:.88rem}
+.sources li{break-inside:avoid;margin-bottom:10px;line-height:1.35}
+.sources li::marker{font-family:var(--f-mono);color:var(--muted);font-size:.8em}
+footer{padding-block:48px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+
+<nav class="top" aria-label="Sections"><div class="wrap">
+  <span class="brand">Volvic · Soutien Collagène</span>
+  <a href="#marche">Le marché</a><a href="#gamme">Notre gamme</a><a href="#cercles">Les 3 cercles</a><a href="#carte">Carte prix / qualité</a><a href="#sources">Sources</a>
+</div></nav>
+
+<main class="wrap">
+  <section id="marche" class="hero">
+    <div>
+      <p class="eyebrow">Page 1 du dossier</p>
+      <h1>Le marché</h1>
+      <p class="lead" id="delim"></p>
+    </div>
+    <div class="figs" id="figs"></div>
+  </section>
+  <div class="prose" id="marche-txt"></div>
+  <div class="bounds" id="bounds"></div>
+
+  <section id="gamme">
+    <p class="eyebrow">Notre gamme</p>
+    <h2>Volvic Soutien Collagène</h2>
+    <div class="own" id="own"></div>
+  </section>
+
+  <section id="cercles">
+    <p class="eyebrow">Les concurrents</p>
+    <h2>Les trois cercles de concurrence</h2>
+    <div class="circles-head">
+      <svg class="rings" viewBox="0 0 200 200" id="rings" aria-hidden="true"></svg>
+      <div>
+        <div class="tabs" role="tablist" id="tabs"></div>
+        <p class="ring-def" id="ringdef"></p>
+      </div>
+    </div>
+    <div class="cards" id="cards" role="tabpanel"></div>
+  </section>
+
+  <section id="carte">
+    <p class="eyebrow">Concurrents directs</p>
+    <h2>Où se place Volvic Soutien Collagène</h2>
+    <p class="prose muted" style="margin-top:10px">Chaque point est un produit. <b style="color:var(--fg)">Cliquez dessus</b> pour choisir entre ses sources et sa grille d'évaluation.</p>
+    <div class="map-grid">
+      <div class="map-card">
+        <div class="chart-box"><div class="chart-inner" id="chartInner">
+          <svg id="map" viewBox="0 0 760 600" role="img" aria-labelledby="mapT"><title id="mapT">Carte perceptuelle : prix au litre en abscisse, qualité de la formule en ordonnée</title></svg>
+        </div></div>
+        <div class="legend" aria-label="Légende">
+          <span><i class="sw" style="background:var(--volvic);box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--volvic)"></i><b>Notre gamme</b> (prix et formule proposés)</span>
+          <span><i class="sw" style="background:var(--vegan)"></i>Vegan</span>
+          <span><i class="sw slash" style="background:var(--animal)"></i>Collagène animal</span>
+          <span><i class="sw bar" style="background:var(--unknown)"></i>Collagène d'origine non précisée</span>
+          <span><i class="sw" style="background:var(--none)"></i>Sans collagène</span>
+          <span><i class="sw dash"></i>Pas vendu en France ou prix ancien</span>
+          <span><i class="sw" style="background:var(--muted);width:9px;height:9px"></i>Taille = dose d'actif par portion</span>
+        </div>
+      </div>
+      <aside class="card" id="panel" aria-live="polite"></aside>
+    </div>
+
+    <details class="grid" id="gridbox">
+      <summary>Grille d'évaluation de la qualité (sur 10)</summary>
+      <p class="muted" style="margin:0 0 10px;font-size:.9rem">La qualité est celle de la formule pour soutenir le collagène. Chaque critère vaut 0, 1 ou 2 points, d'après les données publiées par les marques.</p>
+      <div class="table-box"><table id="gridT"><thead><tr>
+        <th>Produit</th><th>Collagène ou nutriments pro-collagène</th><th>Vitamine C</th><th>Zinc / cuivre</th><th>Sans sucre ni édulcorant</th><th>Vegan</th><th>Total</th><th>Prix au litre</th><th>Prix par g d'actif</th>
+      </tr></thead><tbody></tbody></table></div>
+    </details>
+
+    <div class="notes">
+      <div><b>Prix (abscisse) :</b> prix public relevé le 01/10/2026, ramené au litre pour comparer des formats différents.</div>
+      <div><b>Qualité (ordonnée) :</b> note calculée avec la grille ci-dessus. Ce n'est pas une enquête auprès des consommateurs.</div>
+      <div><b>Les deux axes</b> se croisent au milieu de chaque échelle (6,5 €/L et 5/10) et découpent la carte en quatre zones.</div>
+      <div><b>Volvic Soutien Collagène</b> est placée avec le prix et la formule que nous proposons, à valider avec la R&D.</div>
+      <div><b>Prix par g d'actif :</b> prix d'une portion divisé par les grammes de collagène (ou d'acides aminés pro-collagène pour Volvic).</div>
+      <div><b>Vital Proteins :</b> prix américain converti au taux indicatif de 1 $ ≈ 0,85 €.</div>
+    </div>
+  </section>
+
+  <section id="sources">
+    <p class="eyebrow">Tous les chiffres sont sourcés</p>
+    <h2>Sources</h2>
+    <p class="prose muted" style="margin-top:10px">Recherches faites le 1er octobre 2026. <span class="st ok">vérifié</span> : page ou base officielle ouverte, chiffre lu. <span class="st w">à vérifier</span> : chiffre vu dans un résultat de recherche ou page qui bloque la lecture automatique.</p>
+    <ol class="sources" id="srcList"></ol>
+  </section>
+  <footer>Dossier « Prix et budget marketing » · Projet Volvic Soutien Collagène · Page 1 : Le marché</footer>
+</main>
+
+<script>
+/* ---------- Sources ---------- */
+const SRC={
+ iqvia:["IQVIA France, Compléments alimentaires en France, avril 2026","https://www.iqvia.com/fr-fr/locations/france/blogs/2026/04/complements-alimentaires-en-france",1],
+ synadiet:["Synadiet, La consommation des compléments alimentaires","https://www.synadiet.org/les-complements-alimentaires/leur-consommation/",1],
+ trends:["Google Trends, France, 01/10/2021-30/09/2026 (collagène, eau aromatisée…)","https://trends.google.fr/trends/explore?date=2021-10-01%202026-09-30&geo=FR&q=collag%C3%A8ne,kombucha,eau%20aromatis%C3%A9e,compl%C3%A9ments%20alimentaires",1],
+ reg:["EUR-Lex, Règlement (UE) n° 432/2012, allégations de santé","https://eur-lex.europa.eu/eli/reg/2012/432/oj/fra",1],
+ ratios:["data.economie.gouv.fr, Ratios financiers BCE/INPI (données de l'Annuaire des entreprises)","https://data.economie.gouv.fr/explore/dataset/ratios_inpi_bce/",1],
+ annVolvic:["Annuaire des entreprises, Société des Eaux de Volvic (395 780 059)","https://annuaire-entreprises.data.gouv.fr/donnees-financieres/395780059",1],
+ bodacc:["BODACC, annonces commerciales (recherche par SIREN)","https://bodacc-datadila.opendatasoft.com/explore/dataset/annonces-commerciales/",1],
+ danone:["Danone, résultats annuels 2025","https://www.danone.com/newsroom/press-releases/full-year-results-2025.html",1],
+ danoneAM:["Danone, aide-mémoire des résultats 2025 (PDF)","https://www.danone.com/content/dam/corp/global/danonecom/investors/aide-memoire/2025/aidememoiredanoneFY25.pdf",1],
+ ici:["ICI Auvergne, Danone poursuit ses investissements sur le site de Volvic, sept. 2026","https://www.ici.fr/auvergne-rhone-alpes/puy-de-dome-63/volvic/danone-poursuit-ses-investissements-sur-le-site-des-eaux-de-volvic-6156270",1],
+ france3:["France 3 AURA, Volvic : 50 M€ d'ici 2030 pour préserver l'eau","https://france3-regions.franceinfo.fr/auvergne-rhone-alpes/puy-de-dome/clermont-ferrand/volvic-danone-annonce-50-millions-d-euros-d-ici-2030-pour-preserver-l-eau-des-associations-jugent-l-effort-insuffisant-3424967.html",1],
+ fdt:["Food & Drink Technology, Volvic dives into functional water category, 01/04/2026","https://www.foodanddrinktechnology.com/news/65730/volvic-dives-into-functional-water-category/",1],
+ dairy:["Dairy Reporter, Inside Danone's 2026 strategy, 13/02/2026","https://www.dairyreporter.com/Article/2026/02/13/inside-danones-2026-strategy/",1],
+ careers:["Danone Careers, stage assistant chef de produit Volvic (janv. 2027)","https://careers.danone.com/fr/fr/jobs/stage-assistant-chef-de-produit-volvic-janvier-2027-h-f-26644-fr-fr.html",1],
+ juicy:["Carrefour.fr, Volvic Juicy fraise 1,5 L","https://www.carrefour.fr/p/eau-plate-aromatisee-fraise-juicy-volvic-3057640467233",0],
+ volvicfr:["Volvic.fr, toutes nos gammes","https://www.volvic.fr/nos-produits/toutes-nos-gammes.html",0],
+ d0se:["D0SE, fiche produit Framboise & Fruit du dragon","https://d0se.fr/produit/framboise-fruit-du-dragon/",1],
+ annD0se:["Annuaire des entreprises, D0SE (930 852 983)","https://annuaire-entreprises.data.gouv.fr/entreprise/930852983",1],
+ squad:["Squad Nutrition, Vitamin Water COLLAGEN+","https://www.squad-nutrition.fr/en/products/vitamin-water-collagen",1],
+ annSquad:["Annuaire des entreprises, Squad Nutrition (930 926 779)","https://annuaire-entreprises.data.gouv.fr/entreprise/930926779",1],
+ viwa:["VIWA France, nos produits (composition, devenir distributeur)","https://www.viwafrance.fr/nos-produits/",1],
+ viwastore:["Boutique VIWA (prix)","https://viwa-store.fr/",1],
+ annViwa:["Annuaire des entreprises, VIWA France (940 235 773)","https://annuaire-entreprises.data.gouv.fr/entreprise/940235773",1],
+ humbleW:["Pharmacasse, Humble Collagen Water 330 ml","https://www.pharmacasse.fr/articulations-tendons-et-muscles/28251-humble-collagen-water-framboise-gingembre-330-ml-collagene-3770018309170.html",0],
+ humble:["Humble+, site officiel","https://www.humbleplus.com/",1],
+ annHumble:["Annuaire des entreprises, Humble+ (853 303 923, SIREN à confirmer)","https://annuaire-entreprises.data.gouv.fr/entreprise/853303923",0],
+ vital:["Vital Proteins, Collagen Sparkling Water","https://www.vitalproteins.com/products/collagen-sparkling-waters",1],
+ fooddive:["Food Dive, Vital Proteins launches collagen sparkling water, 06/04/2026","https://www.fooddive.com/news/vital-proteins-collagen-sparkling-water/816716/",1],
+ prn:["PR Newswire, Vital Proteins unveils Collagen Sparkling Water","https://www.prnewswire.com/news-releases/bubbles-with-benefits-vital-proteins-unveils-collagen-sparkling-water-302703980.html",0],
+ nestle:["Nestlé, résultats annuels 2025","https://www.nestle.com/media/pressreleases/allpressreleases/full-year-results-2025",1],
+ nestleMena:["Nestlé MENA, Full-year results 2025 (détail Nestlé Health Science)","https://www.nestle-mena.com/en/media/pressreleases/allpressreleases/full-year-results-2025-strategic-update",0],
+ vw:["Rayon Boissons, Vitaminwater : les débuts en France","https://www.rayon-boissons.com/boissons-sans-alcool-et-eaux/vitaminwater-les-debuts-de-la-pepite-de-coca-cola-en-france-5873",0],
+ vwzero:["Coca-Cola, y a-t-il du sucre dans vitaminwater ?","https://www.coca-cola.com/ca/fr/a-propos-de-nous/faq/y-a-t-il-du-sucre-dans-les-produits-vitaminwater",0],
+ coca:["The Coca-Cola Company, résultats annuels 2025, 10/02/2026","https://investors.coca-colacompany.com/news-events/press-releases/detail/1151/coca-cola-reports-fourth-quarter-and-full-year-2025-results",1],
+ oenoPrice:["Newpharma, Oenobiol Elixir Perfect 30 sticks","https://www.newpharma.fr/oenobiol/656864/oenobiol-elixir-perfect-complement-alimentaire-cure-collagene-et-acide-hyaluronique-30-sticks.html",0],
+ opellaWiki:["Wikipédia, Opella (Oenobiol fait partie d'Opella)","https://en.wikipedia.org/wiki/Opella",0],
+ sanofi:["Sanofi, clôture de la cession d'Opella à CD&R, 30/04/2025","https://www.sanofi.com/en/media-room/press-releases/2025/2025-04-30-11-00-00-3071167",1],
+ biogena:["Biogena, ProCollagen & Hyaluronic Acid+ (vegan)","https://biogena.com/en/products/biogena-aesthetics-hyaluronic-acid-procollagen-superior-neutral-edition_p_4542011",1],
+ lashile:["Pharmacie Veau, Lashilé Beauty","https://www.pharmacieveau.fr/fr/taxons/lashile-beauty",0],
+ kombucha:["Rayon Boissons, Le boom des boissons fermentées (NielsenIQ), 29/05/2026","https://www.rayon-boissons.com/boissons-sans-alcool-et-eaux/le-boom-des-boissons-fermentees",1],
+ ciao:["Superpotion, Ciao Kombucha : la stratégie de marque Squeezie","https://superpotion.fr/ciao-energy-ciao-kombucha-la-strategie-de-marque-squeezie/",0],
+ wdPrice:["Newpharma, marque Waterdrop","https://www.newpharma.fr/brands/waterdrop/08075.html",0],
+ wdFund:["Pulse 2.0, Waterdrop : 100 M€ levés, 13/05/2026","https://pulse2.com/waterdrop-e100-million-raised-for-global-hydration-expansion/",1],
+ cieau:["CIEau, Baromètre Kantar/CIEau 2025","https://www.cieau.com/communique-presse/qualite-micropolluants-climat-ce-que-les-francais-attendent-desormais-de-leur-eau-du-robinet/",1],
+ diy:["Toutvert, Eau infusée concombre menthe citron","https://www.toutvert.fr/eau-infusee-detox-concombre-menthe-citron/",0],
+ kiwi:["Aprifel (données Ciqual/ANSES), fiche Kiwi","https://www.aprifel.com/fr/fiche-nutritionnelle/kiwi/",1],
+ mdd:["Carrefour.fr, Carrefour Sensation eau gazeuse citron 6x50 cl","https://www.carrefour.fr/p/eau-gazeuse-aromatisee-citron-carrefour-sensation-3560071453213",0],
+ cristaline:["Carrefour.fr, Cristaline aromatisée pêche 1,5 L","https://www.carrefour.fr/p/eau-plate-aromatisee-au-jus-peche-cristaline-3254381047995",0],
+ serum:["Carmel Cosmetics Labs, Produits cosmétiques les plus vendus en France","https://carmelcosmeticslabs.com/produits-cosmetiques-les-plus-vendus-en-france/",0],
+ serumMkt:["Data Bridge Market Research, Global Vitamin C Serum Market","https://www.databridgemarketresearch.com/reports/global-vitamin-c-serum-market",0]
+};
+const KEYS=Object.keys(SRC);
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+function r(...ids){return ids.map(id=>{const s=SRC[id];const n=KEYS.indexOf(id)+1;return `<a class="ref${s[2]?"":" w"}" href="${s[1]}" target="_blank" rel="noopener" title="${esc(s[0])}${s[2]?"":" (à vérifier)"}">${n}</a>`}).join("")}
+
+/* ---------- Délimitation ---------- */
+document.getElementById("delim").innerHTML=`Les <b>eaux prêtes à boire enrichies en nutriments qui aident la peau à produire son collagène</b>, vendues en France en grande surface, en pharmacie et en ligne, à des consommateurs qui préfèrent boire leur soin plutôt que prendre un complément.`;
+document.getElementById("marche-txt").innerHTML=`
+ <p>Ce marché se trouve au croisement de deux rayons. D'un côté, les eaux aromatisées, où Volvic est déjà présente avec Volvic Juicy${r("volvicfr")}. De l'autre, les compléments alimentaires beauté, dont le collagène est le segment qui grandit le plus vite : +22 % en 2025${r("iqvia")}.</p>
+ <p>Il est encore jeune. Nous avons identifié six eaux concurrentes directes, souvent lancées depuis 2024 par de petites marques${r("annD0se","annSquad","annViwa")}, et aucune n'associe collagène et formule vegan.</p>`;
+document.getElementById("figs").innerHTML=[
+ ["+22 %","croissance du collagène en compléments alimentaires en 2025",r("iqvia")],
+ ["2 Md€","de compléments vendus en pharmacie et en ligne en 2025 (+4,7 %)",r("iqvia")],
+ ["× 2,6","recherches Google « collagène » en France entre fin 2021 et 2024",r("trends")],
+ ["61 %","des Français consomment des compléments alimentaires",r("synadiet")]
+].map(f=>`<div class="fig"><div class="n">${f[0]}</div><div class="t">${f[1]}${f[2]}</div></div>`).join("");
+document.getElementById("bounds").innerHTML=[
+ ["Produit","Eau prête à boire enrichie pour la peau : collagène ou nutriments pro-collagène"],
+ ["Zone","France métropolitaine"],
+ ["Circuits","Grande surface, pharmacie et parapharmacie, e-commerce"],
+ ["Prix observés","De 4,17 à 9,06 € le litre chez les concurrents directs"]
+].map(b=>`<div class="bound"><div class="k">${b[0]}</div><div class="v">${b[1]}</div></div>`).join("");
+
+/* ---------- Notre gamme ---------- */
+document.getElementById("own").innerHTML=`
+ <div class="card blue">
+  <h3>La proposition</h3>
+  <p class="muted" style="margin:6px 0 0;font-size:.92rem">Eau minérale naturelle Volvic enrichie en nutriments vegan qui aident l'organisme à fabriquer son propre collagène. Prix et formule proposés, à valider avec la R&D.</p>
+  <dl class="spec">
+   <dt>Prix proposé</dt><dd>2,29 € les 50 cl, soit 4,58 €/L</dd>
+   <dt>Par bouteille</dt><dd>3 g d'acides aminés (glycine, proline, lysine), vitamine C 80 mg, zinc 10 mg, cuivre 1 mg</dd>
+   <dt>Sans</dt><dd>Sucre, édulcorant, ingrédient animal</dd>
+   <dt>Allégation</dt><dd>« La vitamine C contribue à la formation normale de collagène »${r("reg")}</dd>
+   <dt>Note qualité</dt><dd>10/10 avec notre grille (voir la carte)</dd>
+  </dl>
+ </div>
+ <div class="card">
+  <h3>Pourquoi Volvic peut se lancer</h3>
+  <div class="rows" style="margin-top:12px">
+   <div class="row"><div class="k">Tarifs repères</div><div class="v">Volvic Juicy : 1,40 € les 1,5 L (0,93 €/L)${r("juicy")}. Volvic Vitamin+ au Royaume-Uni : 2,20 £ les 75 cl${r("fdt")}.</div></div>
+   <div class="row"><div class="k">Santé financière</div><div class="v">Société des Eaux de Volvic : 558,3 M€ de chiffre d'affaires en 2025 (+19 % depuis 2016), 41,2 M€ de résultat net, marge d'EBE de 13,4 %${r("ratios","annVolvic")}. Groupe Danone : 27,3 Md€, +4,5 % à périmètre comparable${r("danone")}.</div></div>
+   <div class="row"><div class="k">Investissements</div><div class="v">50 M€ d'ici 2030 à l'usine du Chancet : eau, décarbonation, nouvelle ligne de production${r("ici","france3")}.</div></div>
+   <div class="row"><div class="k">Stratégie</div><div class="v">Danone fait de l'hydratation fonctionnelle un moteur de croissance${r("dairy")} et note une forte demande pour l'eau vitaminée Volvic en Europe${r("danoneAM")}. Volvic Vitamin+ a été lancée au Royaume-Uni en avril 2026${r("fdt")}, et un stage Volvic de 2027 porte sur les « innovations produits »${r("careers")}.</div></div>
+  </div>
+ </div>`;
+
+/* ---------- Cercles ---------- */
+const CIRCLES={
+ direct:{label:"Directs",def:"Ils vendent la même chose aux mêmes clients : une eau prête à boire enrichie pour la peau.",col:"var(--volvic)"},
+ indirect:{label:"Indirects",def:"Ils répondent au même besoin, soutenir la peau et le collagène, avec une autre offre.",col:"var(--vegan)"},
+ oublie:{label:"Ceux qu'on oublie",def:"Ils ne ressemblent pas à des concurrents, et pourtant ils prennent des clients. Pour eux, on donne le prix et le chiffre qui expliquent pourquoi.",col:"var(--animal)"}
+};
+const COMP=[
+ {c:"direct",id:"dose",name:"D0SE",who:"D0SE SAS, Paris · eau vitaminée vegan",rows:[
+  ["Tarifs",`1,99 € la canette de 33 cl (6,03 €/L), 1,77 € en abonnement${r("d0se")}.`],
+  ["Santé financière",`Société créée en juillet 2024. Aucun chiffre publié. Comptes déposés en novembre 2025, aucune procédure collective${r("annD0se","bodacc")}.`],
+  ["Investissements et stratégie",`Vente en ligne et abonnement, canette alu sans plastique, membre de « 1 % for the planet ». Vitamine C et zinc à 100 % des VNR, sans sucre ni édulcorant${r("d0se")}.`]]},
+ {c:"direct",id:"squad",name:"Squad Collagen+",who:"Squad Nutrition, Montluçon",rows:[
+  ["Tarifs",`2,90 € les 50 cl (5,80 €/L), 2,45 € l'unité par 12${r("squad")}.`],
+  ["Santé financière",`Société créée en juillet 2024. Aucun chiffre publié. Comptes déposés en septembre 2026, aucune procédure collective${r("annSquad","bodacc")}.`],
+  ["Investissements et stratégie",`Cible sportive : fournisseur officiel de l'ASM Clermont et présent dans plus de 100 salles ON AIR. 3 g de collagène bovin par bouteille${r("squad")}.`]]},
+ {c:"direct",id:"viwa",name:"VIWA Body Pro",who:"VIWA France, Paris",rows:[
+  ["Tarifs",`2,50 € les 60 cl (4,17 €/L), 2,00 € la canette${r("viwastore")}.`],
+  ["Santé financière",`Société créée en janvier 2025. Aucun chiffre publié, aucune procédure collective${r("annViwa","bodacc")}.`],
+  ["Investissements et stratégie",`Recrute des distributeurs pour se développer. 3 g de collagène, zinc et vitamines par bouteille${r("viwa")}.`]]},
+ {c:"direct",id:"humble",name:"Humble Collagen Water",who:"Humble+, Paris · eau pétillante au collagène marin",rows:[
+  ["Tarifs",`2,99 € la canette de 33 cl (9,06 €/L)${r("humbleW")}.`],
+  ["Santé financière",`Société créée en 2019. Pas de comptes publics${r("annHumble","bodacc")}.`],
+  ["Investissements et stratégie",`Mise sur la pharmacie : plus de 700 pharmacies et 120 000 clients revendiqués, positionnement « bien-vieillir »${r("humble")}.`]]},
+ {c:"direct",id:"vital",name:"Vital Proteins Sparkling",who:"Nestlé Health Science · États-Unis",rows:[
+  ["Tarifs",`29,99 $ les 12 canettes de 355 ml (7,04 $/L)${r("vital")}.`],
+  ["Santé financière",`Groupe Nestlé : 89,5 Md CHF de ventes en 2025, +3,5 % de croissance organique, 9,0 Md CHF de résultat net${r("nestle")}. Vital Proteins a freiné la croissance de la nutrition active${r("nestleMena")}.`],
+  ["Investissements et stratégie",`Lancée aux États-Unis en mars 2026, extension prévue${r("fooddive")}. Pas encore en France : c'est la principale menace.`]]},
+ {c:"direct",id:"vw",name:"Vitaminwater",who:"The Coca-Cola Company",rows:[
+  ["Tarifs",`2,60 € les 50 cl au lancement en France (prix ancien)${r("vw")}.`],
+  ["Santé financière",`Coca-Cola : 47,9 Md$ de chiffre d'affaires en 2025, +5 % de croissance organique, marge opérationnelle de 28,7 %${r("coca")}.`],
+  ["Investissements et stratégie",`Les eaux, boissons sportives, cafés et thés progressent de 2 % en 2025${r("coca")}. Pas de version au collagène. Présence en France non confirmée.`]]},
+ {c:"indirect",id:"oeno",name:"Oenobiol",who:"Opella (ex-Sanofi) · compléments beauté en pharmacie",rows:[
+  ["Tarifs",`Elixir Perfect (collagène, vitamine C, cuivre) : 38,59 € les 30 sticks, 1,29 €/jour${r("oenoPrice")}.`],
+  ["Santé financière",`Oenobiol appartient à Opella${r("opellaWiki")}, contrôlée depuis avril 2025 par CD&R (50 %), avec Sanofi (48,2 %) et Bpifrance (1,8 %). Opella compte plus de 11 000 salariés${r("sanofi")}.`],
+  ["Investissements et stratégie",`Mise sur la pharmacie, qui réalise 55 % des ventes de compléments${r("synadiet")}.`]]},
+ {c:"indirect",id:"biogena",name:"Biogena ProCollagen",who:"Biogena, Autriche · poudre pro-collagène vegan",rows:[
+  ["Tarifs",`34,90 € les 15 sachets, 2,33 €/jour${r("biogena")}.`],
+  ["Santé financière",`Société autrichienne, pas de comptes publiés en France.`],
+  ["Investissements et stratégie",`Même logique que notre gamme : proline, glycine, lysine et vitamine C, 100 % vegan, mais en poudre${r("biogena")}.`]]},
+ {c:"indirect",id:"humblep",name:"Humble+ poudres et gélules",who:"Humble+, Paris · collagène marin",rows:[
+  ["Tarifs",`De 21,90 à 89,90 €, poudre de collagène marin à 36,90 €${r("humble")}.`],
+  ["Santé financière",`Pas de comptes publics${r("annHumble")}.`],
+  ["Investissements et stratégie",`Plus de 700 pharmacies partenaires et une gamme organisée par besoins santé${r("humble")}.`]]},
+ {c:"indirect",id:"lashile",name:"Lashilé Beauty",who:"Marseille · gummies beauté",rows:[
+  ["Tarifs",`Environ 22 à 30 € les 60 gummies${r("lashile")}.`],
+  ["Santé financière",`Chiffre d'affaires en baisse : 28,6 M€ (2022), 24,1 M€ (2023), 16,0 M€ (2024). Pertes de 2,3 à 2,5 M€ par an depuis 2023${r("ratios")}.`],
+  ["Investissements et stratégie",`Format gummies, en recul de 5 % en pharmacie en 2025${r("iqvia")}.`]]},
+ {c:"indirect",id:"ciao",name:"Ciao Kombucha",who:"Marque lancée par Squeezie · boisson « bien-être »",rows:[
+  ["Tarifs",`Non relevé (rayon frais).`],
+  ["Santé financière",`Plus de 30 M€ de ventes en grande surface, 64 % du kombucha. Le marché des boissons fermentées atteint 51 M€ (+395 %)${r("kombucha")}.`],
+  ["Investissements et stratégie",`Marketing d'influence : marque co-créée par Squeezie et le studio Banger Ventures${r("ciao")}.`]]},
+ {c:"indirect",id:"wd",name:"Waterdrop",who:"Autriche · cubes à dissoudre dans l'eau",rows:[
+  ["Tarifs",`Environ 8,99 € les 12 cubes, 0,75 € par boisson${r("wdPrice")}.`],
+  ["Santé financière",`Environ 150 M€ de chiffre d'affaires par an, rentable${r("wdFund")}.`],
+  ["Investissements et stratégie",`Plus de 100 M€ levés en mai 2026 pour se développer en Europe, avec sa plus grande campagne marketing${r("wdFund")}.`]]},
+ {c:"oublie",id:"tap",name:"Eau du robinet + gourde",who:"La non-consommation",rows:[
+  ["Prix","Quasi gratuit."],["Poids",`68 % des Français boivent l'eau du robinet chaque jour, 78 % lui font confiance${r("cieau")}.`],["Pourquoi il compte","C'est l'alternative la moins chère et sans plastique."]]},
+ {c:"oublie",id:"diy",name:"Eau infusée maison",who:"Le « faire soi-même »",rows:[
+  ["Prix","Quelques centimes."],["Poids",`Une eau citron-concombre apporte environ 10 mg de vitamine C par portion${r("diy")}.`],["Pourquoi il compte","Le client fabrique sa propre boisson « bien-être »."]]},
+ {c:"oublie",id:"kiwi",name:"Kiwi et fruits",who:"L'alimentation",rows:[
+  ["Prix","Prix d'un fruit."],["Poids",`Un kiwi apporte 81,9 mg de vitamine C pour 100 g, environ 100 % des VNR${r("kiwi")}.`],["Pourquoi il compte","Le nutriment clé de notre formule se trouve dans l'assiette."]]},
+ {c:"oublie",id:"mdd",name:"Marques de distributeur",who:"Eaux aromatisées premier prix",rows:[
+  ["Prix",`Carrefour Sensation : 2,94 € les 6 × 50 cl${r("mdd")}. Cristaline : 0,78 €/L${r("cristaline")}.`],["Poids","Le client de l'eau aromatisée choisit surtout au prix."],["Pourquoi il compte","Notre gamme coûte environ 5 fois plus au litre."]]},
+ {c:"oublie",id:"serum",name:"Sérums à la vitamine C",who:"Cosmétiques à appliquer",rows:[
+  ["Prix","Budget « peau » du client."],["Poids",`Parmi les meilleures ventes de soins en France${r("serum")}, marché mondial attendu à +7,4 % par an${r("serumMkt")}.`],["Pourquoi il compte","Le même budget part dans un soin à appliquer plutôt qu'à boire."]]},
+ {c:"oublie",id:"amazon",name:"Amazon et e-pharmacies",who:"Les plateformes",rows:[
+  ["Prix","Prix bas et abonnements."],["Poids",`Amazon : +19 % sur les compléments en 2025. L'e-commerce fait 28 % de la croissance du marché${r("iqvia")}.`],["Pourquoi il compte","Elles captent l'acheteur qui compare les prix."]]},
+ {c:"oublie",id:"juicy",name:"Volvic Juicy",who:"Notre propre gamme",rows:[
+  ["Prix",`1,40 € les 1,5 L (0,93 €/L)${r("juicy")}.`],["Poids",`Volvic vend déjà des eaux aromatisées : Juicy, Zest, Essentiel, Infusion${r("volvicfr")}.`],["Pourquoi il compte","Risque de cannibalisation : la nouvelle gamme peut prendre des ventes à Volvic Juicy."]]}
+];
+let curC="direct";
+const tabs=document.getElementById("tabs"),rings=document.getElementById("rings");
+function drawRings(){
+  const NS="http://www.w3.org/2000/svg";rings.innerHTML="";
+  [["oublie",96],["indirect",66],["direct",36]].forEach(([k,rr])=>{const c=document.createElementNS(NS,"circle");c.setAttribute("cx",100);c.setAttribute("cy",100);c.setAttribute("r",rr);c.setAttribute("fill",k===curC?CIRCLES[k].col:"var(--soft)");c.setAttribute("fill-opacity",k===curC?".9":"1");c.setAttribute("stroke","var(--line)");c.setAttribute("stroke-width","2");c.addEventListener("click",()=>setC(k));rings.appendChild(c)});
+  const t=document.createElementNS(NS,"text");t.setAttribute("x",100);t.setAttribute("y",104);t.setAttribute("text-anchor","middle");t.setAttribute("font-family","Bricolage Grotesque, sans-serif");t.setAttribute("font-weight","800");t.setAttribute("font-size","13");t.setAttribute("fill",curC==="direct"?"#fff":"var(--fg)");t.setAttribute("pointer-events","none");t.textContent="Volvic";rings.appendChild(t);
+}
+function setC(k){curC=k;
+  tabs.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.k===k));
+  document.getElementById("ringdef").textContent=CIRCLES[k].def;drawRings();
+  document.getElementById("cards").innerHTML=COMP.filter(x=>x.c===k).map(x=>`
+   <article class="card ccard"><h3><i class="dotk" style="background:${CIRCLES[k].col}"></i>${esc(x.name)}</h3><div class="who">${esc(x.who)}</div>
+   <div class="rows">${x.rows.map(rw=>`<div class="row"><div class="k">${rw[0]}</div><div class="v">${rw[1]}</div></div>`).join("")}</div>
+   ${k==="direct"?`<button class="linkbtn" type="button" data-go="${x.id}">Voir sur la carte →</button>`:""}</article>`).join("");
+  document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{document.getElementById("carte").scrollIntoView();select(b.dataset.go,"src")}));
+}
+Object.entries(CIRCLES).forEach(([k,v])=>{const b=document.createElement("button");b.className="tab";b.type="button";b.setAttribute("role","tab");b.dataset.k=k;b.innerHTML=`${v.label}<span class="c">${COMP.filter(x=>x.c===k).length}</span>`;b.addEventListener("click",()=>setC(k));tabs.appendChild(b)});
+setC("direct");
+
+/* ---------- Carte ---------- */
+const C=[
+ {id:"volvic",own:1,name:"Volvic Soutien Collagène",who:"Notre gamme · prix et formule proposés",price:"2,29 € les 50 cl (proposé)",unit:2.29,ppl:4.58,origin:"volvic",fr:1,dose:3,g:3,
+  act:"3 g d'acides aminés + vit. C 80 mg + zinc 10 mg + cuivre 1 mg",s:[2,2,2,2,2],
+  why:["3 g d'acides aminés pro-collagène, plus vitamine C, zinc et cuivre","80 mg = 100 % des VNR","Zinc 10 mg et cuivre 1 mg, 100 % des VNR chacun","Ni sucre ni édulcorant","Acides aminés d'origine végétale ou issus de fermentation"],
+  src:["juicy","fdt","biogena","reg"]},
+ {id:"dose",name:"D0SE",who:"D0SE SAS, Paris",price:"1,99 € les 33 cl",unit:1.99,ppl:6.03,origin:"vegan",fr:1,dose:0,g:0,act:"Vitamine C 80 mg + zinc 10 mg, sans collagène",s:[1,2,1,2,2],
+  why:["Pas de collagène, mais vitamine C et zinc, des nutriments pro-collagène","80 mg = 100 % des VNR","Zinc 10 mg, pas de cuivre","0 sucre, sans édulcorant","Vegan"],src:["d0se","annD0se","bodacc"]},
+ {id:"squad",name:"Squad Collagen+",who:"Squad Nutrition, Montluçon",price:"2,90 € les 50 cl",unit:2.90,ppl:5.80,origin:"animal",fr:1,dose:3,g:3,act:"3 000 mg de collagène bovin",s:[2,1,1,1,0],
+  why:["3 000 mg de collagène","40 mg = 50 % des VNR","Zinc 5 mg, pas de cuivre","0 sucre mais 5,5 g de polyols","Collagène bovin"],src:["squad","annSquad","bodacc"]},
+ {id:"viwa",name:"VIWA Body Pro",who:"VIWA France, Paris",price:"2,50 € les 60 cl",unit:2.50,ppl:4.17,origin:"unknown",fr:1,dose:3,g:3,act:"3 000 mg de collagène (origine non précisée)",s:[2,2,1,1,0],
+  why:["3 000 mg de collagène","108 % des VNR annoncés","Zinc, pas de cuivre","0 sucre mais édulcoré à la stévia","Origine du collagène non précisée"],src:["viwa","viwastore","annViwa"]},
+ {id:"humble",name:"Humble Collagen Water",who:"Humble+, Paris",price:"2,99 € les 33 cl",unit:2.99,ppl:9.06,origin:"animal",fr:1,dose:5,g:5,act:"5 g de collagène marin",s:[2,0,0,2,0],
+  why:["5 g de collagène","Pas de vitamine C dans la composition relevée","Ni zinc ni cuivre","Ni sucre ni édulcorant","Collagène de poisson"],src:["humbleW","humble","annHumble"]},
+ {id:"vital",name:"Vital Proteins Sparkling",who:"Nestlé Health Science, États-Unis",price:"29,99 $ les 12 × 355 ml",unit:2.125,ppl:5.98,origin:"animal",fr:0,dose:2.5,g:2.5,act:"2,5 g de peptides de collagène VERISOL",s:[2,2,0,1,0],
+  why:["2,5 g de collagène","100 % de la valeur quotidienne","Ni zinc ni cuivre annoncés","0 sucre, pas d'édulcorant artificiel ; édulcorant naturel non vérifié","Collagène bovin (source habituelle de la marque)"],src:["vital","fooddive","prn"]},
+ {id:"vw",name:"Vitaminwater",who:"Coca-Cola",price:"2,60 € les 50 cl (2006)",unit:2.60,ppl:5.20,origin:"none",fr:0,dose:0,g:0,act:"Pas de collagène",s:[0,1,0,1,0],
+  why:["Ni collagène ni formule pro-collagène","Vitamines ajoutées, dose non vérifiée","Zinc non vérifié","Version zéro : stévia et érythritol","Non vérifié"],src:["vw","vwzero"]}
+];
+C.forEach(c=>c.q=c.s.reduce((a,b)=>a+b,0));
+const COL={volvic:"var(--volvic)",vegan:"var(--vegan)",animal:"var(--animal)",unknown:"var(--unknown)",none:"var(--none)"};
+const ORIG={volvic:"Notre gamme · vegan",vegan:"Vegan",animal:"Collagène animal",unknown:"Origine non précisée",none:"Sans collagène"};
+const CRIT=["Collagène ou nutriments pro-collagène","Vitamine C","Zinc / cuivre","Sans sucre ni édulcorant","Vegan"];
+const NS="http://www.w3.org/2000/svg",svg=document.getElementById("map");
+const W=760,H=600,m={l:46,r:46,t:96,b:78},x0=3,x1=10;
+const sx=v=>m.l+(v-x0)/(x1-x0)*(W-m.l-m.r), sy=v=>H-m.b-v/10*(H-m.t-m.b);
+function el(t,a,p,txt){p=p||svg;const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;p.appendChild(e);return e}
+const defs=el("defs",{});
+const f=el("filter",{id:"grain",x:"0",y:"0",width:"100%",height:"100%"},defs);
+el("feTurbulence",{type:"fractalNoise",baseFrequency:"0.9",numOctaves:"2",seed:"4"},f);el("feColorMatrix",{type:"saturate",values:"0"},f);
+el("rect",{x:0,y:0,width:W,height:H,fill:"var(--paper)"});el("rect",{x:0,y:0,width:W,height:H,filter:"url(#grain)",opacity:"0.06"});
+const mk=(id,o)=>{const mm=el("marker",{id,viewBox:"0 0 12 12",refX:"10",refY:"6",markerWidth:"12",markerHeight:"12",orient:o,markerUnits:"userSpaceOnUse"},defs);el("path",{d:"M2 1 L10 6 L2 11",fill:"none",stroke:"var(--ink)","stroke-width":"2","stroke-linecap":"round","stroke-linejoin":"round"},mm)};
+mk("aE","auto");mk("aS","auto-start-reverse");
+const cx0=sx(6.5),cy0=sy(5);
+el("line",{x1:m.l-24,x2:W-m.r+24,y1:cy0,y2:cy0,stroke:"var(--ink)","stroke-width":2.5,"marker-end":"url(#aE)","marker-start":"url(#aS)"});
+el("line",{x1:cx0,x2:cx0,y1:H-m.b+30,y2:m.t-30,stroke:"var(--ink)","stroke-width":2.5,"marker-end":"url(#aE)","marker-start":"url(#aS)"});
+for(let v=x0;v<=x1;v++){el("line",{x1:sx(v),x2:sx(v),y1:cy0-4,y2:cy0+4,stroke:"var(--ink)","stroke-width":1.5});el("text",{x:sx(v),y:cy0+20,"text-anchor":"middle",class:"axis-t"},null,v+" €/L")}
+for(let v=0;v<=10;v+=2){if(v===4||v===6)continue;el("line",{x1:cx0-4,x2:cx0+4,y1:sy(v),y2:sy(v),stroke:"var(--ink)","stroke-width":1.5});el("text",{x:cx0-9,y:sy(v)+4,"text-anchor":"end",class:"axis-t"},null,v+"/10")}
+el("text",{x:m.l-20,y:cy0+50,class:"ax-big"},null,"Le moins cher");
+el("text",{x:W-m.r+20,y:cy0-16,"text-anchor":"end",class:"ax-big"},null,"Le plus cher");
+el("text",{x:cx0+16,y:m.t-22,class:"ax-big"},null,"Qualité élevée");
+el("text",{x:cx0+16,y:H-m.b+36,class:"ax-big"},null,"Qualité faible");
+el("text",{x:m.l-20,y:28,class:"quad-l"},null,"↖ Bon rapport qualité-prix");
+el("text",{x:W-m.r+20,y:28,"text-anchor":"end",class:"quad-l"},null,"Premium ↗");
+el("text",{x:m.l-20,y:H-m.b+6,class:"quad-l"},null,"↙ Entrée de gamme");
+el("text",{x:W-m.r+20,y:H-m.b+6,"text-anchor":"end",class:"quad-l"},null,"Cher pour ce qu'il apporte ↘");
+el("text",{x:W/2,y:H-10,"text-anchor":"middle",class:"axis-t"},null,"Abscisse : prix au litre (€/L) · Ordonnée : qualité de la formule, grille sur 10");
+const rOf=c=>16+c.dose*3.4;
+const OFF={volvic:c=>[0,rOf(c)+24,"middle"],viwa:c=>[0,-(rOf(c)+10),"middle"],dose:c=>[-(rOf(c)+10),-6,"end"],squad:c=>[-34,rOf(c)+18,"middle"],vital:c=>[(cx0+12)-sx(c.ppl),-(rOf(c)-2),"start"],humble:c=>[0,rOf(c)+22,"middle"],vw:c=>[0,rOf(c)+20,"middle"]};
+const nodes={};
+[...C].sort((a,b)=>(a.own?1:0)-(b.own?1:0)).forEach(c=>{
+  const g=el("g",{class:"pt"+(c.own?" vol":""),tabindex:"0",role:"button","aria-label":`${c.name}, ${c.ppl.toFixed(2).replace(".",",")} € par litre, qualité ${c.q} sur 10. Choisir sources ou grille.`});
+  const rr=rOf(c),cx=sx(c.ppl),cy=sy(c.q);
+  el("circle",{class:"ring",cx,cy,r:rr+6,fill:"none",stroke:c.own?"var(--volvic)":"none","stroke-width":c.own?2:0},g);
+  el("circle",{class:"dot",cx,cy,r:rr,fill:c.fr?COL[c.origin]:"var(--paper)",stroke:COL[c.origin],"stroke-width":c.fr?0:3,"stroke-dasharray":c.fr?"":"5 4","fill-opacity":c.fr?.92:1},g);
+  if(c.origin==="animal"&&c.fr)el("line",{x1:cx-rr*.7,y1:cy-rr*.7,x2:cx+rr*.7,y2:cy+rr*.7,stroke:"var(--ink)","stroke-width":2,"pointer-events":"none"},g);
+  if(c.origin==="unknown")el("line",{x1:cx-rr,y1:cy,x2:cx+rr,y2:cy,stroke:"var(--ink)","stroke-width":2,"pointer-events":"none"},g);
+  const o=OFF[c.id](c);el("text",{class:"lbl",x:cx+o[0],y:cy+o[1],"text-anchor":o[2]},g,c.name);
+  g.addEventListener("click",e=>{e.stopPropagation();openPop(c.id)});
+  g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openPop(c.id)}});
+  nodes[c.id]=g;
+});
+/* Popover : choisir entre sources et grille */
+const inner=document.getElementById("chartInner");let pop=null;
+function closePop(){if(pop){pop.remove();pop=null}}
+function openPop(id){
+  closePop();const c=C.find(x=>x.id===id);highlight(id);
+  const k=inner.getBoundingClientRect().width/W;let x=sx(c.ppl)*k,y=sy(c.q)*k;
+  pop=document.createElement("div");pop.className="pop";pop.setAttribute("role","dialog");pop.setAttribute("aria-label",c.name);
+  pop.innerHTML=`<button class="x" type="button" aria-label="Fermer">×</button><div class="pn">${esc(c.name)}</div><div class="pm">${c.ppl.toFixed(2).replace(".",",")} €/L · qualité ${c.q}/10</div>
+   <div class="pb"><button class="btn primary" type="button" data-v="src">Voir les sources (${c.src.length})</button><button class="btn" type="button" data-v="grid">Voir la grille d'évaluation</button></div>`;
+  inner.appendChild(pop);
+  const pw=250,ph=pop.offsetHeight,iw=inner.clientWidth;
+  let left=x+rOf(c)*k+12;if(left+pw>iw-8)left=x-rOf(c)*k-12-pw;if(left<8)left=8;
+  let top=y-ph/2;top=Math.max(8,Math.min(top,inner.clientHeight-ph-8));
+  pop.style.left=left+"px";pop.style.top=top+"px";
+  pop.querySelector(".x").addEventListener("click",()=>{closePop();nodes[id].focus()});
+  pop.querySelectorAll("[data-v]").forEach(b=>b.addEventListener("click",()=>{select(id,b.dataset.v);closePop();if(innerWidth<960)document.getElementById("panel").scrollIntoView({block:"start"})}));
+  pop.querySelector("[data-v]").focus();
+}
+document.addEventListener("click",e=>{if(pop&&!pop.contains(e.target))closePop()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop()});
+function highlight(id){Object.values(nodes).forEach(n=>n.classList.remove("sel"));nodes[id].classList.add("sel")}
+let curId="volvic",curView="src";
+function select(id,view){curId=id;curView=view;highlight(id);renderPanel()}
+function renderPanel(){
+  const c=C.find(x=>x.id===curId);
+  const tag=c.own?`<span class="st ok" style="color:var(--volvic)">notre gamme · hypothèse</span>`:c.fr?`<span class="st ok" style="color:var(--muted)">vendu en France</span>`:`<span class="st w">hors France ou prix ancien</span>`;
+  const body=curView==="src"?`<ul class="src">${c.src.map(id=>{const s=SRC[id];return `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a><br><span class="st ${s[2]?"ok":"w"}">${s[2]?"vérifié":"à vérifier"}</span> <span class="muted" style="font-size:.78rem">source n° ${KEYS.indexOf(id)+1}</span></li>`}).join("")}</ul>`
+   :`<div class="score">${c.s.map((v,i)=>`<div class="crit"><span class="cn">${CRIT[i]}</span><span class="pts">${v}/2</span><div class="bar"><i style="width:${v*50}%"></i></div><span class="why">${esc(c.why[i])}</span></div>`).join("")}
+     <div class="total"><span>Total</span><b>${c.q}/10</b></div></div>`;
+  document.getElementById("panel").innerHTML=`<h3>${esc(c.name)}</h3><div class="who">${esc(c.who)}</div><div style="margin-top:8px">${tag}</div>
+   <dl class="kv"><dt>Prix</dt><dd>${esc(c.price)}</dd><dt>Prix au litre</dt><dd>${c.ppl.toFixed(2).replace(".",",")} €/L</dd><dt>Actif</dt><dd>${esc(c.act)}</dd><dt>Prix par g d'actif</dt><dd>${c.g?(c.unit/c.g).toFixed(2).replace(".",",")+" €/g":"pas de dose"}</dd></dl>
+   <div class="seg" role="tablist"><button type="button" role="tab" aria-selected="${curView==="src"}" data-v="src">Sources</button><button type="button" role="tab" aria-selected="${curView==="grid"}" data-v="grid">Grille d'évaluation</button></div>${body}`;
+  document.querySelectorAll("#panel .seg button").forEach(b=>b.addEventListener("click",()=>select(curId,b.dataset.v)));
+}
+select("volvic","src");
+/* Grille */
+const tb=document.querySelector("#gridT tbody");
+[...C].sort((a,b)=>(b.own?1:0)-(a.own?1:0)||b.q-a.q).forEach(c=>{
+  const tr=document.createElement("tr");if(c.own)tr.className="mine";
+  tr.innerHTML=`<td><button class="linkbtn" style="margin:0" type="button">${esc(c.name)}</button></td>`+c.s.map((v,i)=>`<td class="n" title="${esc(c.why[i])}">${v}</td>`).join("")+`<td class="n"><b>${c.q}/10</b></td><td class="n">${c.ppl.toFixed(2).replace(".",",")} €</td><td class="n">${c.g?(c.unit/c.g).toFixed(2).replace(".",",")+" €/g":"—"}</td>`;
+  tr.querySelector("button").addEventListener("click",()=>{select(c.id,"grid");document.getElementById("panel").scrollIntoView({block:"nearest"})});
+  tb.appendChild(tr);
+});
+/* Liste des sources */
+document.getElementById("srcList").innerHTML=KEYS.map(k=>{const s=SRC[k];return `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])}</a> <span class="st ${s[2]?"ok":"w"}">${s[2]?"vérifié":"à vérifier"}</span></li>`}).join("");
+</script>
+
+</body>
+</html>
