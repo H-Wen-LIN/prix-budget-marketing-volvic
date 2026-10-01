@@ -75,6 +75,8 @@
 
 ## Synthèse visuelle
 
+![Les 3 cercles de concurrence – Volvic Soutien Collagène](images/3-cercles-concurrents-volvic-soutien-collagene.png)
+
 ```
                 ┌──────────────────────────────────────────────────────┐
                 │ CERCLE 3 – OUBLIÉS                                    │

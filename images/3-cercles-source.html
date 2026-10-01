@@ -1,0 +1,53 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;background:#f7f9fb;font-family:"DejaVu Sans",Arial,sans-serif;color:#1d2b36}
+#wrap{width:1800px;height:1260px;position:relative}
+h1{position:absolute;left:60px;top:28px;margin:0;font-size:38px;color:#0b3c5d}
+.sub{position:absolute;left:60px;top:80px;font-size:18px;color:#4a5d6b}
+.panel{position:absolute;left:1150px;width:600px}
+.card{background:#fff;border-radius:14px;padding:16px 20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08);border-left:8px solid}
+.card h3{margin:0 0 6px;font-size:20px}
+.card p{margin:3px 0;font-size:15px;line-height:1.35}
+.card small{color:#6b7c88;font-size:12px}
+.foot{position:absolute;left:1150px;top:1060px;font-size:14px;color:#6b7c88;width:600px;line-height:1.4}
+</style></head><body><div id="wrap">
+<h1>Volvic « Soutien Collagène » — les 3 cercles de concurrence</h1>
+<div class="sub">Eau minérale naturelle enrichie en nutriments vegan pro-collagène (vitamine C, zinc, cuivre, acides aminés, extraits végétaux)</div>
+<svg width="1120" height="1110" style="position:absolute;left:0;top:110px" id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
+<div class="panel" style="top:130px">
+ <div class="card" style="border-color:#1f6fb2"><h3 style="color:#1f6fb2">① Directs — même produit, mêmes clients</h3>
+  <p>• <b>D0SE</b> : eau vegan vit. C + zinc, 1,99 €/33 cl <small>[d0se.fr]</small></p>
+  <p>• <b>Squad Collagen+</b> : 3 g collagène bovin, 2,90 €/50 cl <small>[squad-nutrition.fr]</small></p>
+  <p>• <b>VIWA Body Pro</b>, <b>Humble Collagen Water</b> (collagène marin)</p>
+  <p>• Menace : <b>Vital Proteins</b> (Nestlé) lancée aux USA en 2026 <small>[Food Dive]</small></p>
+  <p>➜ Peu de marques, surtout du collagène <b>animal</b> : le créneau « vegan + eau minérale + GMS » est libre.</p></div>
+ <div class="card" style="border-color:#2a9d8f"><h3 style="color:#1f7a6f">② Indirects — même besoin, autre offre</h3>
+  <p>• Pharmacie : <b>Oenobiol</b> 38,59 €/30 sticks <small>[Newpharma]</small>, <b>Biogena</b> vegan <small>[biogena.com]</small></p>
+  <p>• Gummies <b>Lashilé</b>, cubes <b>Waterdrop</b> ≈0,75 €/boisson <small>[Newpharma]</small></p>
+  <p>• <b>Kombucha</b> : 51 M€ en GMS (+395 %), Ciao 64 % <small>[Rayon Boissons / NielsenIQ]</small></p>
+  <p>➜ Collagène : <b>+22 %</b> en 2025, le segment n° 1 des compléments <small>[IQVIA]</small></p></div>
+ <div class="card" style="border-color:#e09f3e"><h3 style="color:#b5741a">③ Oubliés — ne ressemblent pas à des concurrents</h3>
+  <p>• <b>Eau du robinet + gourde</b> : 68 % en boivent chaque jour <small>[Kantar/CIEau 2025]</small></p>
+  <p>• <b>Faire soi-même</b> : eau infusée citron, kiwi = 82 mg vit. C/100 g <small>[Aprifel/Ciqual]</small></p>
+  <p>• <b>MDD</b> aromatisées ≈0,5 €/L <small>[Carrefour.fr]</small> · <b>sérums vit. C</b></p>
+  <p>• <b>Amazon</b> : +19 % sur les compléments <small>[IQVIA]</small> · cannibalisation <b>Volvic Juicy</b></p></div>
+ <div class="card" style="border-color:#0b3c5d"><h3 style="color:#0b3c5d">Prix cible proposé : 1,50–2,50 € / 50 cl</h3>
+  <p>Entre les MDD (~0,5 €/L) et les eaux au collagène animal (2,45–2,90 €) <small>(recommandation, non sourcée)</small></p></div>
+</div>
+<div class="foot">Sources détaillées : analyse-concurrentielle-volvic-soutien-collagene.md (25 sources). Allégation autorisée : « la vitamine C contribue à la formation normale de collagène » — Règlement UE 432/2012.</div>
+</div>
+<script>
+const s=document.getElementById('svg'),NS='http://www.w3.org/2000/svg',cx=560,cy=545;
+function el(t,a,p=s){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
+[[525,'#fdf1de','#e09f3e'],[365,'#dff3f0','#2a9d8f'],[215,'#dcebf7','#1f6fb2']].forEach(([r,f,st])=>el('circle',{cx,cy,r,fill:f,stroke:st,'stroke-width':4}));
+el('circle',{cx,cy,r:72,fill:'#0b3c5d'});
+[['VOLVIC',-10,26,800],['Soutien',18,17,400],['Collagène',38,17,400]].forEach(([t,dy,fs,w])=>{const e=el('text',{x:cx,y:cy+dy,'text-anchor':'middle',fill:'#fff','font-size':fs,'font-weight':w});e.textContent=t});
+function label(t,y,c){const e=el('text',{x:cx,y,'text-anchor':'middle',fill:c,'font-size':19,'font-weight':700,'letter-spacing':1});e.textContent=t}
+label('③ CEUX QU\'ON OUBLIE',cy-490,'#b5741a');label('② INDIRECTS',cy-332,'#1f7a6f');label('① DIRECTS',cy-185,'#1f6fb2');
+function ring(items,R,col,start){items.forEach((t,i)=>{const a=start+i*2*Math.PI/items.length;const x=cx+R*Math.cos(a),y=cy+R*Math.sin(a);
+ const g=el('g',{});const tx=el('text',{x,y:y+5,'text-anchor':'middle','font-size':14,'font-weight':600,fill:'#1d2b36'},g);tx.textContent=t;
+ const w=tx.getComputedTextLength()+22;const r=el('rect',{x:x-w/2,y:y-15,width:w,height:30,rx:15,fill:'#fff',stroke:col,'stroke-width':2},g);g.insertBefore(r,tx);})}
+ring(['D0SE','Squad Collagen+','VIWA Body Pro','Humble Water','Vital Proteins*','Vitaminwater'],148,'#1f6fb2',-Math.PI/2+Math.PI/6);
+ring(['Oenobiol','Biogena vegan','Humble+','Lashilé gummies','Kombucha Ciao','Waterdrop'],292,'#2a9d8f',-Math.PI/2);
+ring(['Eau du robinet + gourde','Eau infusée maison','Kiwi & fruits','MDD aromatisées','Sérums vitamine C','Amazon / e-pharmacies','Volvic Juicy (cannibal.)'],448,'#e09f3e',-Math.PI/2+Math.PI/7);
+const n=el('text',{x:cx,y:cy+525+30,'text-anchor':'middle','font-size':13,fill:'#6b7c88'});n.textContent='* Vital Proteins (Nestlé) : lancée aux États-Unis, pas encore en France';
+</script></body></html>
