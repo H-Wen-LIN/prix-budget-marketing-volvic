@@ -25,7 +25,7 @@ Pour voir le site : ouvrir `index.html` dans un navigateur, ou activer GitHub Pa
 
 1. Ouvrir **Settings → Pages** sur GitHub.
 2. Dans « Build and deployment », choisir **Deploy from a branch**.
-3. Choisir la branche `claude/nice-wozniak-34wmn1` et le dossier `/ (root)`, puis cliquer sur **Save**.
+3. Choisir la branche `main` et le dossier `/ (root)`, puis cliquer sur **Save**.
 4. Après une ou deux minutes, le site est en ligne à l'adresse https://h-wen-lin.github.io/prix-budget-marketing-volvic/
 
 Remarque : GitHub Pages rend le site public si le dépôt est public. Sur un compte gratuit, Pages ne fonctionne pas sur un dépôt privé.
